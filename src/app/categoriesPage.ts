@@ -1,10 +1,12 @@
 import Control from "../common/control";
 
-class CategoriesPage extends Control {
+export class CategoriesPage extends Control {
   onBack: () => void;
   onSelect: (index: number) => void;
-  constructor(parentNode: HTMLElement) {
+
+  constructor(parentNode: HTMLElement, gameName : string) {
     super(parentNode);
+    const header  = new Control(this.node, 'h2','',gameName)
     const backButton = new Control(this.node, "button", "", "back");
     backButton.node.onclick = () => {
       this.onBack();

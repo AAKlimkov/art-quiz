@@ -1,10 +1,19 @@
 import Control from "../common/control";
 
+fetch('src\pets.json')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
+
 interface IAppSetting {}
 
 export class CarouselPage extends Control {
   onSlide: (index: number) => void;
   onSwitch: (arr?: Array<number>) => void;
+  onBack: () => void;
   caruoselTemp: Array<number>;
 
   constructor(parentNode: HTMLElement) {
@@ -49,6 +58,11 @@ export class CarouselPage extends Control {
       });
 
       this.onSwitch();
+    };
+
+    const backButton = new Control(this.node, "button", "", "back");
+    backButton.node.onclick = () => {
+      this.onBack();
     };
 
     const carouselFull = [1, 2, 3, 4, 5, 6, 7, 8];
